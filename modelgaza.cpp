@@ -19,7 +19,7 @@ class classBall
         const float dt=0.1;
 };
 
-void drawBall(classBall Ball, RenderWindow* window)
+void drawBall(classBall Ball, RenderWindow* window) //Функция зарисовки шара//
 {
     
     for(float i=Ball.r; Ball.r>0; Ball.r--)
@@ -30,7 +30,7 @@ void drawBall(classBall Ball, RenderWindow* window)
         float B1=Ball.B-(Ball.B*Ball.r/i);
 
 
-        CircleShape okruzhnost(100);
+        CircleShape okruzhnost();
         okruzhnost.setRadius(i);
         okruzhnost.setFillColor(Color(R1,G1,B1));
         okruzhnost.setPosition(Ball.x, Ball.y);
@@ -43,7 +43,7 @@ void drawBall(classBall Ball, RenderWindow* window)
 }
 
 
-void crashBall(classBall *BallFirst, classBall *BallSecond)
+void crashBall(classBall *BallFirst, classBall *BallSecond) //Столкновение//
     {
         if (sqrt(((*BallFirst).x - (*BallSecond).x)*((*BallFirst).x - (*BallSecond).x)+((*BallFirst).y - (*BallSecond).y)*((*BallFirst).y - (*BallSecond).y)) < 2*(*BallFirst).r)
             {
@@ -56,7 +56,7 @@ void crashBall(classBall *BallFirst, classBall *BallSecond)
 
     }
 
-void moveBall(classBall *Ball)
+void moveBall(classBall *Ball) //Движение внутри рамки//
 
     {
         (*Ball).x += (*Ball).vx * (*Ball).dt;
@@ -70,14 +70,12 @@ void moveBall(classBall *Ball)
 
 int main()
 {   
-    srand(time(NULL));
-
-    
-    
+    srand(time(NULL))
+        
     classBall *Balls = new Ball[150];
     
     
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 15; i++) //Цикл проходит по всем молекулам класса//
         {
             for (int j = 1; j < 15; j++)
             {
@@ -96,7 +94,7 @@ int main()
 
 
         RenderWindow window(VideoMode(800, 600), "SFML Works!");
-    for(;;)
+    for(;;) //Запуск функций//
             {
                 for (int m = 0; m < 150; m++)
                 {
@@ -110,7 +108,7 @@ int main()
                 }
                 
             }    
-    CircleShape okruzhnost(100);
+    CircleShape okruzhnost();
     window.clear(Color::White);
     window.display();
         
