@@ -72,7 +72,7 @@ int main()
 {   
     srand(time(NULL))
         
-    classBall *Balls = new classBall[150];
+    classBall *Balls = new classBall[350];
     
     
         for (int i = 0; i < 15; i++) //Цикл проходит по всем молекулам класса//
@@ -96,12 +96,12 @@ int main()
         RenderWindow window(VideoMode(800, 600), "SFML Works!");
     for(;;) //Запуск функций//
             {
-                for (int m = 0; m < 150; m++)
+                for (int m = 0; m < 350; m++)
                 {
                     drawBall(Balls[m], &window);
                     moveBall(&Balls[m]);
                     
-                    for (int n = 0; n < 150; n++)
+                    for (int n = 0; n < 350; n++)
                     {
                         crashBall(&Balls[n], &Balls[m]);
                     }
