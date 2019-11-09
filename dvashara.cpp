@@ -22,30 +22,27 @@ class classBall
 void drawBall(classBall Ball, RenderWindow* window)
 {
     
-    for(float i=Ball.r; Ball.r>0; Ball.r--)
+    for(float i=Ball.r; i>0; i--)
     {
 
-        float R1=Ball.R-(Ball.R*Ball.r/i); 
-        float G1=Ball.G-(Ball.G*Ball.r/i);
-        float B1=Ball.B-(Ball.B*Ball.r/i);
+        float R1=Ball.R-(Ball.R*i/Ball.r); 
+        float G1=Ball.G-(Ball.G*i/Ball.r);
+        float B1=Ball.B-(Ball.B*i/Ball.r);
 
 
         CircleShape okruzhnost(100);
         okruzhnost.setRadius(i);
         okruzhnost.setFillColor(Color(R1,G1,B1));
-        okruzhnost.setPosition(Ball.x, Ball.y);
+        okruzhnost.setPosition(Ball.x - i, Ball.y - i);
         window->draw(okruzhnost); //Рисует шар//
-        window->display(); ///Выводит его на экран/
-        window->clear(); ///Чистит экран от изображения предыдущего положения шара/
-
-
+        
     }
 }
 
 
 void crashBall(classBall *BallFirst, classBall *BallSecond)
     {
-        if (sqrt(((*BallFirst).x - (*BallSecond).x)*((*BallFirst).x - (*BallSecond).x)+((*BallFirst).y - (*BallSecond).y)*((*BallFirst).y - (*BallSecond).y)) < 2*(*BallFirst).r)
+        if (sqrt(((*BallFirst).x - (*BallSecond).x)*((*BallFirst).x - (*BallSecond).x)+((*BallFirst).y - (*BallSecond).y)*((*BallFirst).y - (*BallSecond).y)) < 60)
             {
                 (*BallFirst).vx= -((*BallFirst).vx);
                 (*BallFirst).vy= -((*BallFirst).vy);
@@ -75,11 +72,11 @@ int main()
     
 
     classBall Ball1;
-        Ball1.x = 300;
+        Ball1.x = 100;
         Ball1.y = 300;
-        Ball1.vx = 30;
-        Ball1.vy = 30;
-        Ball1.r = 50;
+        Ball1.vx = 6;
+        Ball1.vy = 3;
+        Ball1.r = 30;
         Ball1.R = 245;
         Ball1.G = 192;
         Ball1.B = 203;
@@ -87,16 +84,16 @@ int main()
     classBall Ball2;
         Ball2.x = 400;
         Ball2.y = 400;
-        Ball2.vx = 10;
-        Ball2.vy = 40;
-        Ball2.r = 50;
+        Ball2.vx = 2;
+        Ball2.vy = 4;
+        Ball2.r = 30;
         Ball2.R = 245;
         Ball2.G = 192;
         Ball2.B = 203;  
     
-    RenderWindow window(VideoMode(800, 600), "SFML Works!");
-           
-                   
+        RenderWindow window(VideoMode(800, 600), "SFML Works!");
+                
+               
     CircleShape okruzhnost(100);
     window.clear(Color::White);
     window.display();
@@ -112,9 +109,9 @@ int main()
                 window.close();
         } 
 
-        window.clear(Color::White);
+        window.clear();
         drawBall(Ball1, &window);
-        drawBall(Ball2, &window);
+        drawBall(Ball2, &window);        
         moveBall(&Ball1);
         moveBall(&Ball2);
         crashBall(&Ball1, &Ball2);
