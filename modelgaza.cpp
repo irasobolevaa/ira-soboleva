@@ -72,7 +72,7 @@ int main()
 {   
     srand(time(NULL))
         
-    classBall *Balls = new Ball[150];
+    classBall *Balls = new classBall[150];
     
     
         for (int i = 0; i < 15; i++) //Цикл проходит по всем молекулам класса//
