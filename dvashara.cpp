@@ -94,16 +94,9 @@ int main()
         Ball2.G = 192;
         Ball2.B = 203;  
     
-        RenderWindow window(VideoMode(800, 600), "SFML Works!");
-            for(;;)
-            {
-                
-                drawBall(Ball1, &window);
-                drawBall(Ball2, &window);
-                moveBall(&Ball1);
-                moveBall(&Ball2);
-                crashBall(&Ball1, &Ball2);
-            }    
+    RenderWindow window(VideoMode(800, 600), "SFML Works!");
+           
+                   
     CircleShape okruzhnost(100);
     window.clear(Color::White);
     window.display();
@@ -120,6 +113,11 @@ int main()
         } 
 
         window.clear(Color::White);
+        drawBall(Ball1, &window);
+        drawBall(Ball2, &window);
+        moveBall(&Ball1);
+        moveBall(&Ball2);
+        crashBall(&Ball1, &Ball2);
         window.display();
   
     }
